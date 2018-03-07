@@ -25,7 +25,7 @@ export class AppComponent {
 
   title:string;
   content:string;
-  
+
   postDoc: AngularFirestoreDocument<Post>;
   post: Observable<Post>;
 
@@ -53,6 +53,10 @@ export class AppComponent {
   getPost(postId) {
     this.postDoc = this.afs.doc('posts/'+postId);
     this.post = this.postDoc.valueChanges();
+  }
+
+  deletePost(postId) {
+    this.afs.doc('posts/'+postId).delete();
   }
 
 }
