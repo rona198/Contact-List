@@ -4,8 +4,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 interface Post {
-  title: string;
-  content: string;
+  fName: string;
+  lName: string;
+  phone: string;
+  mobile: string;
+  email: string;
+  address: string;
 }
 
 interface PostId extends Post { 
@@ -23,8 +27,12 @@ export class AppComponent {
   postsCol: AngularFirestoreCollection<Post>;
   posts: any;
 
-  title:string;
-  content:string;
+  fName: string;
+  lName: string;
+  phone: string;
+  mobile: string;
+  email: string;
+  address: string;
 
   postDoc: AngularFirestoreDocument<Post>;
   post: Observable<Post>;
@@ -47,7 +55,7 @@ export class AppComponent {
   }
 
   addPost() {
-    this.afs.collection('posts').doc('my-custom-id').set({'title': this.title, 'content': this.content});
+     this.afs.collection('posts').add({'fName': this.fName, 'lName': this.lName, 'phone': this.phone, 'mobile': this.mobile, 'email': this.email, 'address': this.address});
   }
 
   getPost(postId) {
@@ -57,6 +65,6 @@ export class AppComponent {
 
   deletePost(postId) {
     this.afs.doc('posts/'+postId).delete();
-  }
+  }  
 
 }
